@@ -16,13 +16,15 @@ public class Crate : MonoBehaviour {
         _destination = dest;
         var dir = _destination - transform.position;
         var time = dir.magnitude / _velocity;
-        _tween = transform.DOMove(_destination, time).OnComplete(() => {
-            ObjectPool.DestroyObject(gameObject);
-        }).SetEase(Ease.Linear);
+        _tween = transform.DOMove(_destination, time).OnComplete(OnDisappear).SetEase(Ease.Linear);
     }
     
     public void OnPicked() {
         _tween?.Kill();
+        OnDisappear();
+    }
+    
+    private void OnDisappear() {
         ObjectPool.DestroyObject(gameObject);
     }
     

@@ -27,4 +27,9 @@ public class EliteFish : Fish {
             OnCaught();
         }
     }
+
+    protected override void OnDisappear() {
+        base.OnDisappear();
+        GameManager.Instance().OnEliteDisappeared();
+    }
 }

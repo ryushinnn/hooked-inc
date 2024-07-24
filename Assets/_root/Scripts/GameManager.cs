@@ -23,6 +23,7 @@ public class GameManager : Singleton<GameManager> {
     [BoxGroup("Configs:"), SerializeField] private LayerMask _fishLayerMask;
 
     private RaycastHit2D[] _hits = new RaycastHit2D[20];
+    private bool _eliteExisting;
     
     protected override void OnAwake() {
     }
@@ -37,21 +38,35 @@ public class GameManager : Singleton<GameManager> {
     private void Update() {
         CatchFish();
     }
+    
+    public void OnEliteDisappeared() {
+        _eliteExisting = false;
+    }
 
     private void SpawnFish() {
-        _spawner.Spawn();
+        if (!_eliteExisting) {
+            _spawner.Spawn();
+        }
+
         var interval = Random.Range(_spawnInterval.x, _spawnInterval.y);
         Invoke(nameof(SpawnFish), interval);
     }
 
     private void SpawnSchoolOfFish() {
-        _spawner.SpawnSchool();
+        if (!_eliteExisting) {
+            _spawner.SpawnSchool();
+        }
+
         var interval = Random.Range(_spawnSchoolInterval.x, _spawnSchoolInterval.y);
         Invoke(nameof(SpawnSchoolOfFish), interval);
     }
 
     private void SpawnEliteFish() {
-        _spawner.SpawnElite();
+        if (!_eliteExisting) {
+            _eliteExisting = true;
+            _spawner.SpawnElite();
+        }
+        
         var interval = Random.Range(_spawnEliteInterval.x, _spawnEliteInterval.y);
         Invoke(nameof(SpawnEliteFish), interval);
     }

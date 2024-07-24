@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assassin.Utils.ObjectPool;
+using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 public class FloatingText : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    [SerializeField] private TMP_Text _txtValue;
+    
+    public void SetValue(string value) {
+        _txtValue.text = value;
+        DOVirtual.DelayedCall(0.5f, ()=> {
+            ObjectPool.DestroyObject(gameObject);
+        });
     }
 }
