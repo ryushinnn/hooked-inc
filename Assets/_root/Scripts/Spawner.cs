@@ -8,7 +8,8 @@ using Logger = Assassin.Utils.Logger;
 using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour {
-    [SerializeField] private UnderwaterFish[] _fishPrefabs;
+    [SerializeField] private Fish[] _fishPrefabs;
+    [SerializeField] private EliteFish[] _eliteFishPrefab; 
     [SerializeField] private float _borderOffset;
     [SerializeField] private MovementType _fishMovementType;
 
@@ -65,9 +66,9 @@ public class Spawner : MonoBehaviour {
             }
         }
 
-        var fish = ObjectPool.SpawnObject(fishPrefab.gameObject, spawnPosition);
+        var fish = ObjectPool.SpawnObject(fishPrefab.gameObject, spawnPosition).GetComponent<Fish>();
         fish.transform.SetParent(transform);
-        fish.GetComponent<UnderwaterFish>().SetDestination(destination, false);
+        fish.SetDestination(destination, false);
     }
 
     public void SpawnSchool() {
@@ -103,14 +104,34 @@ public class Spawner : MonoBehaviour {
         }
 
         foreach (var route in routes) {
-            var fish = ObjectPool.SpawnObject(fishPrefab.gameObject, route.Item1);
+            var fish = ObjectPool.SpawnObject(fishPrefab.gameObject, route.Item1).GetComponent<Fish>();
             fish.transform.SetParent(transform);
-            fish.GetComponent<UnderwaterFish>().SetDestination(route.Item2, true);
+            fish.SetDestination(route.Item2, true);
         }
     }
 
     public void SpawnElite() {
+        var spawnPosition = new Vector3();
+        var destination = new Vector3();
+        var fishPrefab = _eliteFishPrefab[Random.Range(0, _eliteFishPrefab.Length)];
+
+        switch ((Direction)Random.Range(0,1)) {
+            case Direction.TopToDown:
+                spawnPosition = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y + _camera.orthographicSize + _borderOffset, 0);
+                destination = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y - _camera.orthographicSize - _borderOffset, 0);
+                break;
+            case Direction.DownToTop:
+                spawnPosition = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y - _camera.orthographicSize - _borderOffset, 0);
+                destination = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y + _camera.orthographicSize + _borderOffset, 0);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
         
+        var fish = ObjectPool.SpawnObject(fishPrefab.gameObject, spawnPosition).GetComponent<EliteFish>();
+        fish.transform.SetParent(transform);
+        fish.SetDestination(destination, false);
+        fish.ResetHp();
     }
 }
 

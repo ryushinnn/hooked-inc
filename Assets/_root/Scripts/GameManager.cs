@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager> {
     
     [BoxGroup("Configs:"), SerializeField] private Vector2 _spawnInterval;
     [BoxGroup("Configs:"), SerializeField] private Vector2 _spawnSchoolInterval;
+    [BoxGroup("Configs:"), SerializeField] private Vector2 _spawnEliteInterval;
     [BoxGroup("Configs:"), SerializeField] private LayerMask _fishLayerMask;
 
     private RaycastHit2D[] _hits = new RaycastHit2D[20];
@@ -27,7 +28,8 @@ public class GameManager : Singleton<GameManager> {
 
     private void Start() {
         SpawnFish();
-        SpawnSchoolOfFish();
+        Invoke(nameof(SpawnSchoolOfFish), _spawnSchoolInterval.x);
+        Invoke(nameof(SpawnEliteFish), _spawnEliteInterval.x);
     }
 
     private void Update() {
@@ -47,7 +49,9 @@ public class GameManager : Singleton<GameManager> {
     }
 
     private void SpawnEliteFish() {
-        
+        _spawner.SpawnElite();
+        var interval = Random.Range(_spawnEliteInterval.x, _spawnEliteInterval.y);
+        Invoke(nameof(SpawnEliteFish), interval);
     }
 
     private void CatchFish() {
@@ -61,8 +65,12 @@ public class GameManager : Singleton<GameManager> {
             for (int i = 0; i < count; i++) {
                 if (_hits[i].collider != null) {
                     var fish = _hits[i].collider.gameObject;
-                    fish.GetComponent<UnderwaterFish>().OnCaught();
-                    _boat.CollectFish(fish.transform.position);
+                    if (fish.TryGetComponent(out EliteFish elite)) {
+                        elite.TakeDamage(1);
+                    } else {
+                        fish.GetComponent<Fish>().OnCaught();
+                        _boat.CollectFish(fish.transform.position);
+                    }
                 }
             }
         } else {

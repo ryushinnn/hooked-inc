@@ -6,8 +6,9 @@ using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class UnderwaterFish : MonoBehaviour {
+public class Fish : MonoBehaviour {
     [SerializeField] private float _velocityMin, _velocityMax;
+    [SerializeField] private Transform _rotator;
     [SerializeField] private Animator _animator;
 
     private Vector3 _destination;
@@ -21,7 +22,7 @@ public class UnderwaterFish : MonoBehaviour {
         var dist = dir.magnitude;
         var vel = fixedVel ? (_velocityMin + _velocityMax) / 2 : Random.Range(_velocityMin, _velocityMax);
         var time = dist / vel;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        _rotator.rotation = Quaternion.Euler(0, 0, angle);
         _tween = transform.DOMove(_destination, time).OnComplete(() => {
             ObjectPool.DestroyObject(gameObject);
         }).SetEase(Ease.Linear);

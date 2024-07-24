@@ -253,6 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fishPrefabs:
   - {fileID: 7135302278643197451, guid: fe29fbaaf5268094a8746e8f7f6022f6, type: 3}
+  _eliteFishPrefab:
+  - {fileID: 5395537070122983897, guid: 5a9e9e7a2f9bbad43934fdb5b56a23bd, type: 3}
   _borderOffset: 0.7
   _fishMovementType: 0
 --- !u!1 &390015188
@@ -291,6 +293,7 @@ MonoBehaviour:
   _cursor: {fileID: 390644362}
   _spawnInterval: {x: 0.25, y: 1}
   _spawnSchoolInterval: {x: 10, y: 30}
+  _spawnEliteInterval: {x: 10, y: 10}
   _fishLayerMask:
     serializedVersion: 2
     m_Bits: 32768
