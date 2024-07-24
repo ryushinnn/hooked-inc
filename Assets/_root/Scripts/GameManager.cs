@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager> {
     [BoxGroup("Configs:"), SerializeField] private Vector2 _spawnInterval;
     [BoxGroup("Configs:"), SerializeField] private Vector2 _spawnSchoolInterval;
     [BoxGroup("Configs:"), SerializeField] private Vector2 _spawnEliteInterval;
+    [BoxGroup("Configs:"), SerializeField] private Vector2 _spawnCrateInterval;
     [BoxGroup("Configs:"), SerializeField] private LayerMask _fishLayerMask;
 
     private RaycastHit2D[] _hits = new RaycastHit2D[20];
@@ -30,6 +31,7 @@ public class GameManager : Singleton<GameManager> {
         SpawnFish();
         Invoke(nameof(SpawnSchoolOfFish), _spawnSchoolInterval.x);
         Invoke(nameof(SpawnEliteFish), _spawnEliteInterval.x);
+        Invoke(nameof(SpawnCrate), _spawnCrateInterval.y);
     }
 
     private void Update() {
@@ -54,6 +56,12 @@ public class GameManager : Singleton<GameManager> {
         Invoke(nameof(SpawnEliteFish), interval);
     }
 
+    private void SpawnCrate() {
+        _spawner.SpawnCrate();
+        var interval = Random.Range(_spawnCrateInterval.x, _spawnCrateInterval.y);
+        Invoke(nameof(SpawnCrate), interval);
+    }
+
     private void CatchFish() {
 #if UNITY_EDITOR
         if (Input.GetMouseButton(0)) {
@@ -64,12 +72,14 @@ public class GameManager : Singleton<GameManager> {
             var count = Physics2D.RaycastNonAlloc(mousePosition, Vector2.zero, _hits, Mathf.Infinity, _fishLayerMask);
             for (int i = 0; i < count; i++) {
                 if (_hits[i].collider != null) {
-                    var fish = _hits[i].collider.gameObject;
-                    if (fish.TryGetComponent(out EliteFish elite)) {
+                    var obj = _hits[i].collider.gameObject;
+                    if (obj.TryGetComponent(out EliteFish elite)) {
                         elite.TakeDamage(1);
+                    } else if (obj.TryGetComponent(out Crate crate)) {
+                        crate.OnPicked();
                     } else {
-                        fish.GetComponent<Fish>().OnCaught();
-                        _boat.CollectFish(fish.transform.position);
+                        obj.GetComponent<Fish>().OnCaught();
+                        _boat.CollectFish(obj.transform.position);
                     }
                 }
             }

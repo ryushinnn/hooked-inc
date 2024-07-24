@@ -9,17 +9,21 @@ using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour {
     [SerializeField] private Fish[] _fishPrefabs;
-    [SerializeField] private EliteFish[] _eliteFishPrefab; 
+    [SerializeField] private EliteFish[] _eliteFishPrefab;
+    [SerializeField] private Crate _cratePrefab;
     [SerializeField] private float _borderOffset;
     [SerializeField] private MovementType _fishMovementType;
 
     private Camera _camera;
     private float _screenHeight, _screenWidth;
+    private float _camX, _camY;
 
     private void Awake() {
         _camera = Common.GetCamera();
         _screenHeight = _camera.orthographicSize * 2;
         _screenWidth = _screenHeight * Screen.width / Screen.height;
+        _camX = _camera.transform.position.x;
+        _camY = _camera.transform.position.y;
     }
 
     public void Spawn() {
@@ -31,14 +35,14 @@ public class Spawner : MonoBehaviour {
             switch ((Direction)(Random.Range(0, 2) * 2)) {
                 case Direction.TopToDown:
                     var posX = Random.Range(-_screenWidth / 2, _screenWidth / 2);
-                    spawnPosition = new Vector3(posX, _camera.transform.position.y + _camera.orthographicSize + _borderOffset, 0);
-                    destination = new Vector3(posX, _camera.transform.position.y - _camera.orthographicSize - _borderOffset, 0);
+                    spawnPosition = new Vector3(posX, _camY + _screenHeight / 2 + _borderOffset, 0);
+                    destination = new Vector3(posX, _camY - _screenHeight / 2 - _borderOffset, 0);
                     break;
                 case Direction.RightToLeft:
                     var posY = Random.Range(-_screenHeight / 2, _screenHeight / 2);
                     var offsetY = _screenWidth * Mathf.Tan(30 * Mathf.Deg2Rad);
-                    spawnPosition = new Vector3(_camera.transform.position.x + _screenWidth / 2 + _borderOffset, posY, 0);
-                    destination = new Vector3(_camera.transform.position.x - _screenWidth / 2 - _borderOffset, posY + offsetY, 0);
+                    spawnPosition = new Vector3(_camX + _screenWidth / 2 + _borderOffset, posY, 0);
+                    destination = new Vector3(_camX - _screenWidth / 2 - _borderOffset, posY + offsetY, 0);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -46,20 +50,20 @@ public class Spawner : MonoBehaviour {
         } else if (_fishMovementType == MovementType.FourDirections) {
             switch ((Direction)Random.Range(0, 4)) {
                 case Direction.TopToDown:
-                    spawnPosition = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y + _camera.orthographicSize + _borderOffset, 0);
-                    destination = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y - _camera.orthographicSize - _borderOffset, 0);
+                    spawnPosition = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camY + _screenHeight / 2 + _borderOffset, 0);
+                    destination = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camY - _screenHeight / 2 - _borderOffset, 0);
                     break;
                 case Direction.DownToTop:
-                    spawnPosition = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y - _camera.orthographicSize - _borderOffset, 0);
-                    destination = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y + _camera.orthographicSize + _borderOffset, 0);
+                    spawnPosition = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camY - _screenHeight / 2 - _borderOffset, 0);
+                    destination = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camY + _screenHeight / 2 + _borderOffset, 0);
                     break;
                 case Direction.LeftToRight:
-                    spawnPosition = new Vector3(_camera.transform.position.x - _screenWidth / 2 - _borderOffset, Random.Range(-_screenHeight / 2, _screenHeight / 2), 0);
-                    destination = new Vector3(_camera.transform.position.x + _screenWidth / 2 + _borderOffset, Random.Range(-_screenHeight / 2, _screenHeight / 2), 0);
+                    spawnPosition = new Vector3(_camX - _screenWidth / 2 - _borderOffset, Random.Range(-_screenHeight / 2, _screenHeight / 2), 0);
+                    destination = new Vector3(_camX + _screenWidth / 2 + _borderOffset, Random.Range(-_screenHeight / 2, _screenHeight / 2), 0);
                     break;
                 case Direction.RightToLeft:
-                    spawnPosition = new Vector3(_camera.transform.position.x + _screenWidth / 2 + _borderOffset, Random.Range(-_screenHeight / 2, _screenHeight / 2), 0);
-                    destination = new Vector3(_camera.transform.position.x - _screenWidth / 2 - _borderOffset, Random.Range(-_screenHeight / 2, _screenHeight / 2), 0);
+                    spawnPosition = new Vector3(_camX + _screenWidth / 2 + _borderOffset, Random.Range(-_screenHeight / 2, _screenHeight / 2), 0);
+                    destination = new Vector3(_camX - _screenWidth / 2 - _borderOffset, Random.Range(-_screenHeight / 2, _screenHeight / 2), 0);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -85,8 +89,8 @@ public class Spawner : MonoBehaviour {
                     var randX = Random.Range(0, waveLength);
                     var offsetY = _screenWidth * Mathf.Tan(30 * Mathf.Deg2Rad);
                     routes.Add(Tuple.Create(
-                        new Vector3(_camera.transform.position.x + _screenWidth / 2 + randX, posY + randY, 0),
-                        new Vector3(_camera.transform.position.x - _screenWidth / 2 - (waveLength - randX), posY + randY + offsetY, 0)));
+                        new Vector3(_camX + _screenWidth / 2 + _borderOffset + randX, posY + randY, 0),
+                        new Vector3(_camX - _screenWidth / 2 - _borderOffset - (waveLength - randX), posY + randY + offsetY, 0)));
                 }
                 break;
             case Direction.LeftToRight:
@@ -95,8 +99,8 @@ public class Spawner : MonoBehaviour {
                     var randX = Random.Range(0, waveLength);
                     var offsetY = _screenWidth * Mathf.Tan(30 * Mathf.Deg2Rad);
                     routes.Add(Tuple.Create(
-                        new Vector3(_camera.transform.position.x - _screenWidth / 2 - randX, posY + randY, 0),
-                        new Vector3(_camera.transform.position.x + _screenWidth / 2 + (waveLength - randX), posY + randY + offsetY, 0)));
+                        new Vector3(_camX - _screenWidth / 2 - _borderOffset - randX, posY + randY, 0),
+                        new Vector3(_camX + _screenWidth / 2 + _borderOffset + (waveLength - randX), posY + randY + offsetY, 0)));
                 }
                 break;
             default:
@@ -117,12 +121,12 @@ public class Spawner : MonoBehaviour {
 
         switch ((Direction)Random.Range(0,1)) {
             case Direction.TopToDown:
-                spawnPosition = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y + _camera.orthographicSize + _borderOffset, 0);
-                destination = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y - _camera.orthographicSize - _borderOffset, 0);
+                spawnPosition = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camY + _screenHeight / 2 + _borderOffset, 0);
+                destination = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camY - _screenHeight / 2 - _borderOffset, 0);
                 break;
             case Direction.DownToTop:
-                spawnPosition = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y - _camera.orthographicSize - _borderOffset, 0);
-                destination = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camera.transform.position.y + _camera.orthographicSize + _borderOffset, 0);
+                spawnPosition = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camY - _screenHeight / 2 - _borderOffset, 0);
+                destination = new Vector3(Random.Range(-_screenWidth / 2, _screenWidth / 2), _camY + _screenHeight / 2 + _borderOffset, 0);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -132,6 +136,15 @@ public class Spawner : MonoBehaviour {
         fish.transform.SetParent(transform);
         fish.SetDestination(destination, false);
         fish.ResetHp();
+    }
+
+    public void SpawnCrate() {
+        var posX = Random.Range(-_screenWidth / 2, _screenWidth / 2);
+        var spawnPosition = new Vector3(posX, _camY + _screenHeight / 2 + _borderOffset, 0);
+        var destination = new Vector3(posX, _camY - _screenHeight / 2 - _borderOffset, 0);
+        var crate = ObjectPool.SpawnObject(_cratePrefab.gameObject, spawnPosition).GetComponent<Crate>();
+        crate.transform.SetParent(transform);
+        crate.SetDestination(destination);
     }
 }
 
