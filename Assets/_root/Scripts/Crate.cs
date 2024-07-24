@@ -6,6 +6,7 @@ using UnityEngine;
 using Logger = Assassin.Utils.Logger;
 
 public class Crate : MonoBehaviour {
+    [SerializeField] private float _value;
     [SerializeField] private float _velocity;
 
     private Vector3 _destination;

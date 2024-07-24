@@ -7,6 +7,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Fish : MonoBehaviour {
+    [SerializeField] private float _value;
     [SerializeField] private float _velocityMin, _velocityMax;
     [SerializeField] private Transform _rotator;
     [SerializeField] private Animator _animator;
