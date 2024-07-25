@@ -91,7 +91,7 @@ public class GameManager : Singleton<GameManager> {
                     if (obj.TryGetComponent(out EliteFish elite)) {
                         elite.TakeDamage(1);
                     } else if (obj.TryGetComponent(out Crate crate)) {
-                        crate.OnPicked();
+                        crate.OnCaught();
                     } else {
                         var fish = obj.GetComponent<Fish>();
                         fish.OnCaught();

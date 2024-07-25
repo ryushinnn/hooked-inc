@@ -202,13 +202,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b510bbfe4b0783408a5a39284165533, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VelocityMin: 0.5
+  VelocityMax: 2
   _value: 1
-  _velocityMin: 0.5
-  _velocityMax: 2
   _rotator: {fileID: 8941424414070854178}
   _animator: {fileID: 6231863901993387278}
   _spriteRenderer: {fileID: 4858512302555837154}
-  _boxCollider: {fileID: 8028809416249480467}
 --- !u!114 &344279484319087141
 MonoBehaviour:
   m_ObjectHideFlags: 0

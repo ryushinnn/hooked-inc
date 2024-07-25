@@ -6,34 +6,26 @@ using DG.Tweening;
 using UnityEngine;
 using Logger = Assassin.Utils.Logger;
 
-public class Crate : MonoBehaviour {
+public class Crate : MovableObject {
     [SerializeField] private float _value;
-    [SerializeField] private float _velocity;
 
-    private Vector3 _destination;
     private Tween _tween;
 
-    public void SetDestination(Vector3 dest) {
-        _destination = dest;
-        var dir = _destination - transform.position;
-        var time = dir.magnitude / _velocity;
-        _tween = transform.DOMove(_destination, time).OnComplete(OnDisappear).SetEase(Ease.Linear);
+    public override void SetDestination(Vector3 dest, bool fixedVel) {
+        Destination = dest;
+        var dir = Destination - transform.position;
+        var time = dir.magnitude / GetVelocity(fixedVel);
+        _tween = transform.DOMove(Destination, time).OnComplete(OnDisappear).SetEase(Ease.Linear);
     }
     
-    public void OnPicked() {
+    public override void OnCaught() {
         _tween?.Kill();
         OnDisappear();
         Inventory.Instance().ReceiveMoney(_value);
         MessageDispatcher<MessageID.OnFloatingTextRequested>.Trigger.Invoke($"+${_value:N0}", transform.position);
     }
-    
-    private void OnDisappear() {
+
+    protected override void OnDisappear() {
         ObjectPool.DestroyObject(gameObject);
     }
-    
-#if UNITY_EDITOR
-    private void OnDrawGizmos() {
-        Gizmos.DrawLine(transform.position, _destination);
-    }
-#endif
 }

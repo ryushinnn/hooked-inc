@@ -144,7 +144,7 @@ public class Spawner : MonoBehaviour {
         var destination = new Vector3(posX, _camY - _screenHeight / 2 - _borderOffset, 0);
         var crate = ObjectPool.SpawnObject(_cratePrefab.gameObject, spawnPosition).GetComponent<Crate>();
         crate.transform.SetParent(transform);
-        crate.SetDestination(destination);
+        crate.SetDestination(destination, true);
     }
 }
 

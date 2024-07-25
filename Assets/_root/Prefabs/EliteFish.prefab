@@ -278,13 +278,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f74939bf240294482688c2eeb94f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VelocityMin: 0.1
+  VelocityMax: 0.3
   _value: 1000
-  _velocityMin: 0.1
-  _velocityMax: 0.3
   _rotator: {fileID: 8941424414070854178}
-  _animator: {fileID: 6231863901993387278}
-  _spriteRenderer: {fileID: 0}
-  _boxCollider: {fileID: 7720993626486101771}
   _maxHp: 2000
   _imgHpFill: {fileID: 7899034980913447606}
   _currentHp: 0
