@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assassin.Utils;
 using Assassin.Utils.ObjectPool;
 using DG.Tweening;
 using UnityEngine;
@@ -22,6 +23,8 @@ public class Crate : MonoBehaviour {
     public void OnPicked() {
         _tween?.Kill();
         OnDisappear();
+        Inventory.Instance().ReceiveMoney(_value);
+        MessageDispatcher<MessageID.OnFloatingTextRequested>.Trigger.Invoke($"+${_value:N0}", transform.position);
     }
     
     private void OnDisappear() {

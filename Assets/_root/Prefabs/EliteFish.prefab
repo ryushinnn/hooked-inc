@@ -283,6 +283,8 @@ MonoBehaviour:
   _velocityMax: 0.3
   _rotator: {fileID: 8941424414070854178}
   _animator: {fileID: 6231863901993387278}
+  _spriteRenderer: {fileID: 0}
+  _boxCollider: {fileID: 7720993626486101771}
   _maxHp: 2000
   _imgHpFill: {fileID: 7899034980913447606}
   _currentHp: 0

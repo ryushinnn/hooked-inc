@@ -207,6 +207,8 @@ MonoBehaviour:
   _velocityMax: 2
   _rotator: {fileID: 8941424414070854178}
   _animator: {fileID: 6231863901993387278}
+  _spriteRenderer: {fileID: 4858512302555837154}
+  _boxCollider: {fileID: 8028809416249480467}
 --- !u!114 &344279484319087141
 MonoBehaviour:
   m_ObjectHideFlags: 0

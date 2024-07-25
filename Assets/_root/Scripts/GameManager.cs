@@ -93,8 +93,9 @@ public class GameManager : Singleton<GameManager> {
                     } else if (obj.TryGetComponent(out Crate crate)) {
                         crate.OnPicked();
                     } else {
-                        obj.GetComponent<Fish>().OnCaught();
-                        _boat.CollectFish(obj.transform.position);
+                        var fish = obj.GetComponent<Fish>();
+                        fish.OnCaught();
+                        _boat.CollectFish(fish.transform.position, fish.GetFishSprite());
                     }
                 }
             }

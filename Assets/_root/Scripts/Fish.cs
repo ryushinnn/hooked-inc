@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Assassin.Utils;
 using Assassin.Utils.ObjectPool;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,10 +13,15 @@ public class Fish : MonoBehaviour {
     [SerializeField] private float _velocityMin, _velocityMax;
     [SerializeField] private Transform _rotator;
     [SerializeField] private Animator _animator;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private Vector3 _destination;
     private Tween _tween;
     private int _paramSpeed = Animator.StringToHash("Speed");
+
+    public Sprite GetFishSprite() {
+        return _spriteRenderer.sprite;
+    }
     
     public void SetDestination(Vector3 dest, bool fixedVel) {
         _destination = dest;

@@ -19,19 +19,20 @@ public class Boat : MonoBehaviour {
         ChangePosition();
     }
 
-    public void CollectFish(Vector3 fishPos) {
+    public void CollectFish(Vector3 fishPos, Sprite fishSprite) {
         var fish = ObjectPool.SpawnObject(_fishPrefab, fishPos);
         var dir = _bucket.position - fish.transform.position;
-        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + 180;
         var vel = 7f;
         var time = dir.magnitude / vel;
+        fish.GetComponentInChildren<SpriteRenderer>().sprite = fishSprite;
         fish.transform.rotation = Quaternion.Euler(0, 0, angle);
         fish.transform.DOMove(_bucket.position, time).OnComplete(() => {
             ObjectPool.DestroyObject(fish);
         }).SetEase(_collectFishCurve);
 
         var oScale = fish.transform.localScale.x;
-        fish.transform.DOScale(oScale * 2.5f, time * 2/3).OnComplete(() => {
+        fish.transform.DOScale(oScale * 5f, time * 2/3).OnComplete(() => {
             fish.transform.DOScale(oScale, time * 1/3);
         }).SetEase(Ease.OutCubic);
     }
