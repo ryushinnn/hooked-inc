@@ -1,14 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assassin.Utils.ObjectPool;
 using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Boat : MonoBehaviour {
+    [SerializeField] private Transform _fisherman;
+    [SerializeField] private Transform[] _standPositions;
+    [SerializeField] private float _changePositionInterval;
+    
     [SerializeField] private Transform _bucket;
     [SerializeField] private GameObject _fishPrefab;
     [SerializeField] private AnimationCurve _collectFishCurve;
-    
+
+    private void Start() {
+        ChangePosition();
+    }
+
     public void CollectFish(Vector3 fishPos) {
         var fish = ObjectPool.SpawnObject(_fishPrefab, fishPos);
         var dir = _bucket.position - fish.transform.position;
@@ -24,5 +34,12 @@ public class Boat : MonoBehaviour {
         fish.transform.DOScale(oScale * 2.5f, time * 2/3).OnComplete(() => {
             fish.transform.DOScale(oScale, time * 1/3);
         }).SetEase(Ease.OutCubic);
+    }
+
+    private void ChangePosition() {
+        var newPos = _standPositions[Random.Range(0, _standPositions.Length)];
+        _fisherman.DOMove(newPos.position, 1f).SetEase(Ease.Linear);
+        _fisherman.DORotateQuaternion(newPos.rotation, 1f).SetEase(Ease.Linear);
+        Invoke(nameof(ChangePosition), _changePositionInterval);
     }
 }

@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 1698681793417632401}
   - component: {fileID: 4858512302555837154}
   - component: {fileID: 6231863901993387278}
+  - component: {fileID: 6752100943607145305}
   m_Layer: 15
   m_Name: Graphic
   m_TagString: Untagged
@@ -160,7 +161,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e6f3dd50823e39f408e599db34989ee7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -213,6 +214,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6752100943607145305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2321250867131575864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderTypes: 0
+  normalStrength: 5
+  normalSmoothing: 1
+  computingNormal: 0
 --- !u!1 &2895185660866445384
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +283,6 @@ MonoBehaviour:
   _velocityMax: 0.3
   _rotator: {fileID: 8941424414070854178}
   _animator: {fileID: 6231863901993387278}
-  _floatingText: {fileID: 5343921961136927839, guid: 440f2b44dcf7c1f4e8d03bcd4d62e4cc, type: 3}
   _maxHp: 2000
   _imgHpFill: {fileID: 7899034980913447606}
   _currentHp: 0

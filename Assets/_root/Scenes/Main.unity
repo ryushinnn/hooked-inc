@@ -282,6 +282,37 @@ MonoBehaviour:
   _cratePrefab: {fileID: 6857620272883422758, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
   _borderOffset: 0.7
   _fishMovementType: 0
+--- !u!1 &322331302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 322331303}
+  m_Layer: 0
+  m_Name: P1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &322331303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322331302}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.77029467, w: 0.6376882}
+  m_LocalPosition: {x: -0.217, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1426790182}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 100.761}
 --- !u!1 &390015188
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +957,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _txtCurrentMoney: {fileID: 1537591307}
+--- !u!1 &1426790181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1426790182}
+  m_Layer: 0
+  m_Name: PatrolRoute
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1426790182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426790181}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1863405405}
+  - {fileID: 322331303}
+  - {fileID: 1670970913}
+  m_Father: {fileID: 1520391942}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1520391940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1077,7 @@ Transform:
   m_Children:
   - {fileID: 84158972}
   - {fileID: 1892353940}
+  - {fileID: 1426790182}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &1520391943
@@ -1038,6 +1104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddce561276bc5c48ad94ef2d0beff74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fisherman: {fileID: 1892353940}
+  _standPositions:
+  - {fileID: 1863405405}
+  - {fileID: 322331303}
+  - {fileID: 1670970913}
+  _changePositionInterval: 5
   _bucket: {fileID: 84158972}
   _fishPrefab: {fileID: 1466098430102217794, guid: 04cbc2a8ba2023442b89324266b7a8dc, type: 3}
   _collectFishCurve:
@@ -1346,6 +1418,37 @@ Canvas:
   m_SortingLayerID: 1120017241
   m_SortingOrder: 9999
   m_TargetDisplay: 0
+--- !u!1 &1670970912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1670970913}
+  m_Layer: 0
+  m_Name: P2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1670970913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670970912}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.98968875, w: -0.14323474}
+  m_LocalPosition: {x: -0.182, y: -1.208, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1426790182}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 196.47}
 --- !u!1 &1801229367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1476,6 +1579,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1863405404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1863405405}
+  m_Layer: 0
+  m_Name: P0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1863405405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863405404}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.217, y: 0.295, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1426790182}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1892353939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,8 +1721,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1956352858}
   - component: {fileID: 1956352857}
+  - component: {fileID: 1956352859}
   m_Layer: 0
-  m_Name: Bg
+  m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1614,7 +1749,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 49046abb3fc98ed458f9e391fb9ce6f6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1661,6 +1796,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1956352859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956352856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderTypes: 0
+  normalStrength: 5
+  normalSmoothing: 1
+  computingNormal: 0
 --- !u!1 &2065324033
 GameObject:
   m_ObjectHideFlags: 0
