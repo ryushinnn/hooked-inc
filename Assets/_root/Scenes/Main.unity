@@ -347,10 +347,10 @@ MonoBehaviour:
   _spawner: {fileID: 95260786}
   _rewardPrefab: {fileID: 1466098430102217794, guid: 04cbc2a8ba2023442b89324266b7a8dc, type: 3}
   _cursor: {fileID: 390644362}
-  _spawnInterval: {x: 0.25, y: 1}
+  _spawnInterval: {x: 0.2, y: 0.5}
   _spawnSchoolInterval: {x: 10, y: 30}
-  _spawnEliteInterval: {x: 10, y: 30}
-  _spawnCrateInterval: {x: 5, y: 5}
+  _spawnEliteInterval: {x: 30, y: 60}
+  _spawnCrateInterval: {x: 5, y: 15}
   _fishLayerMask:
     serializedVersion: 2
     m_Bits: 32768
@@ -685,7 +685,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 823726565}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd5d7cc17934ef4936f3c29d93fa25c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7107cfa05961df74f85204d721f75d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &824770177
