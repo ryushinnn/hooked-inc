@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.coffee.softmask-for-ugui": "https://github.com/mob-sakai/SoftMaskForUGUI.git",
     "com.tienassassin.assassin-sdk": "https://github.com/tienassassin/assassin-sdk.git",
     "com.unity.collab-proxy": "2.4.3",
     "com.unity.feature.2d": "2.0.0",
