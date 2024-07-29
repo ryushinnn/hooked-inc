@@ -5,19 +5,10 @@ using Assassin.Utils;
 using Assassin.Utils.ObjectPool;
 using TMPro;
 using UnityEngine;
+using Logger = Assassin.Utils.Logger;
 
-public class HomeUI : MonoBehaviour {
-    // [SerializeField] private TMP_Text _txtCurrentMoney;
-    //
-    // private void OnEnable() {
-    //     MessageDispatcher<MessageID.OnMoneyUpdated>.AddListener(OnMoneyUpdated);
-    // }
-    //
-    // private void OnDisable() {
-    //     MessageDispatcher<MessageID.OnMoneyUpdated>.RemoveListener(OnMoneyUpdated);
-    // }
-    //
-    // private void OnMoneyUpdated(float amount) {
-    //     _txtCurrentMoney.text = $"${amount:N0}";
-    // }
+public class HomeUI : UI {
+    public override void Open(params object[] args) {
+        Logger.Log("haha");
+    }
 }
