@@ -7,7 +7,6 @@ using Assassin.Utils.ObjectPool;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Logger = Assassin.Utils.Logger;
 using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager> {

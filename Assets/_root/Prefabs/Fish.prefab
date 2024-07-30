@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f08e71eb4eb4d588b45916458f8b5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _category: 0
+  _category: MovableObject
 --- !u!61 &8028809416249480467
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Logger = Assassin.Utils.Logger;
 
 public class SafeAreaException : MonoBehaviour {
     private Vector2 _defaultScreen = new(1080, 1920);

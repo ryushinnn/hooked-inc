@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Assassin.Utils;
 using Assassin.Utils.ObjectPool;
 using UnityEngine;
-using Logger = Assassin.Utils.Logger;
 using Random = UnityEngine.Random;
 
 public class Spawner : MonoBehaviour {

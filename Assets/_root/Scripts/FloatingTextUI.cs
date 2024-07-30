@@ -10,11 +10,11 @@ public class FloatingTextUI : MonoBehaviour {
     private List<FloatingText> _floatingTexts = new();
     
     private void OnEnable() {
-        MessageDispatcher<MessageID.OnFloatingTextRequested>.AddListener(SpawnFloatingText);
+        MessageDispatcher<GameEvent.OnFloatingTextRequested>.AddListener(SpawnFloatingText);
     }
 
     private void OnDisable() {
-        MessageDispatcher<MessageID.OnFloatingTextRequested>.RemoveListener(SpawnFloatingText);
+        MessageDispatcher<GameEvent.OnFloatingTextRequested>.RemoveListener(SpawnFloatingText);
     }
     
     private void SpawnFloatingText(string value, Vector3 worldPos) {

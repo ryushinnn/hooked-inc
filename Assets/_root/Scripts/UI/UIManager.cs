@@ -4,48 +4,48 @@ using System.Collections.Generic;
 using System.Linq;
 using Assassin.Core;
 using Assassin.Extension;
+using Assassin.Utils;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Logger = Assassin.Utils.Logger;
 
 public class UIManager : Singleton<UIManager> {
-    [SerializeField] private UI[] _uis;
+    [SerializeField] private List<UI> _uiList = new();
 
     private Stack<UI> _cache = new();
 
-    protected override void OnAwake() {
-        
+    public static UI GetUI<T>() where T : UI {
+        return Instance()._uiList.OfType<T>().FirstOrDefault();
     }
 
-    public void OpenUI<T>(bool stack = false) where T : UI {
-        var ui = _uis.OfType<T>().FirstOrDefault();
+    public static void OpenUI<T>(bool stack = false) where T : UI {
+        var ui = GetUI<T>();
         if (!ui) {
-            Logger.Log($"UI with type {typeof(T).Name} is missing!!!");
+            ALog.Log($"UI with type {typeof(T).Name} is missing!!!");
             return;
         }
 
         if (stack) {
-            _cache.Push(ui);
+            Instance()._cache.Push(ui);
         } else {
-            while (_cache.Count > 0) {
-                _cache.Pop().Close();
+            while (Instance()._cache.Count > 0) {
+                Instance()._cache.Pop().Close();
             }
-            _cache.Clear();
+            Instance()._cache.Clear();
         }
         
         ui.Open();
     }
 
-    public void CloseUI<T>() where T : UI {
-        var ui = _uis.OfType<T>().FirstOrDefault();
+    public static void CloseUI<T>() where T : UI {
+        var ui = GetUI<T>();
         if (!ui) {
-            Logger.Log($"UI with type {typeof(T).Name} is missing!!!");
+            ALog.Log($"UI with type {typeof(T).Name} is missing!!!");
             return;
         }
 
         ui.Close();
-        if (_cache.Count > 0) {
-            _cache.Pop().Open();
+        if (Instance()._cache.Count > 0) {
+            Instance()._cache.Pop().Open();
         }
     }
 
@@ -53,4 +53,16 @@ public class UIManager : Singleton<UIManager> {
     private void OpenHome() {
         OpenUI<HomeUI>();
     }
+
+#if UNITY_EDITOR
+    [Button]
+    private void FindAllUI() {
+        _uiList = new List<UI>();
+        foreach (Transform child in transform) {
+            if (child.TryGetComponent(out UI ui)) {
+                _uiList.Add(ui);
+            }
+        }
+    }
+#endif
 }

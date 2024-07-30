@@ -642,6 +642,7 @@ GameObject:
   - component: {fileID: 4708681001314034441}
   - component: {fileID: 6929273237095065157}
   - component: {fileID: 6751562990370476560}
+  - component: {fileID: 7087776059816368038}
   m_Layer: 5
   m_Name: CurrencyWidget
   m_TagString: Untagged
@@ -724,3 +725,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffade7edb5b1df45a6c3642149606c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7087776059816368038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901589670069849435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd40890748c7eb43897c3bb7864e4ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 0
+  _txtValue: {fileID: 9182244915118577151}
+  _btnAdd: {fileID: 3365251009257231110}

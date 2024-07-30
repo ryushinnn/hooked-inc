@@ -4,7 +4,6 @@ using Assassin.Utils;
 using Assassin.Utils.ObjectPool;
 using DG.Tweening;
 using UnityEngine;
-using Logger = Assassin.Utils.Logger;
 
 public class Crate : MovableObject {
     [SerializeField] private float _value;
@@ -22,7 +21,7 @@ public class Crate : MovableObject {
         _tween?.Kill();
         OnDisappear();
         Inventory.Instance().ReceiveMoney(_value);
-        MessageDispatcher<MessageID.OnFloatingTextRequested>.Trigger.Invoke($"+${_value:N0}", transform.position);
+        MessageDispatcher<GameEvent.OnFloatingTextRequested>.Trigger.Invoke($"+${_value:N0}", transform.position);
     }
 
     protected override void OnDisappear() {
