@@ -89,18 +89,22 @@ public class HomeUI : UI {
     }
 
     private void OpenFishTank() {
+        CloseMenu();
         UIManager.OpenUI<FishTankUI>();
     }
 
     private void OpenAquarium() {
+        CloseMenu();
         UIManager.OpenUI<AquariumUI>();
     }
 
     private void OpenRanking() {
+        CloseMenu();
         UIManager.OpenUI<RankingUI>();
     }
 
     private void OpenSetting() {
+        CloseMenu();
         UIManager.OpenUI<SettingUI>();
     }
 }

@@ -9,8 +9,10 @@ using UnityEngine.UI;
 
 public class AquariumBoard : MonoBehaviour {
     [SerializeField] private Transform _widgetParent;
+    [SerializeField] private Button _btnClose;
     
     public Action<AquariumWidget> OnWidgetSelected;
+    public Action OnClosed;
 
     private List<AquariumWidget> _widgets = new();
     private RectTransform _boardRect;
@@ -20,6 +22,7 @@ public class AquariumBoard : MonoBehaviour {
     private Sequence _extendSeq;
     
     private void Awake() {
+        _btnClose.onClick.AddListener(Close);
         _boardRect = GetComponent<RectTransform>();
         
         foreach (Transform child in _widgetParent) {
@@ -51,5 +54,9 @@ public class AquariumBoard : MonoBehaviour {
             value => {
                 _boardRect.sizeDelta = new Vector2(_boardRect.sizeDelta.x, value);
             }).SetEase(Ease.OutBack));
+    }
+
+    private void Close() {
+        OnClosed?.Invoke();
     }
 }

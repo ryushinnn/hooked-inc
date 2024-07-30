@@ -11,7 +11,16 @@ public class AquariumUI : UI {
 
     private void Awake() {
         _board.OnWidgetSelected += SelectWidget;
+        _board.OnClosed += () => Close();
         _inside.OnBacked += OpenBoard;
+    }
+
+    public override void Open(params object[] args) {
+        gameObject.SetActive(true);
+    }
+
+    public override void Close(params object[] args) {
+        gameObject.SetActive(false);
     }
 
     private void SelectWidget(AquariumWidget widget) {
