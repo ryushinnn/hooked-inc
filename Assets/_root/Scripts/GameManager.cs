@@ -78,7 +78,7 @@ public class GameManager : Singleton<GameManager> {
 
     private void CatchFish() {
 #if UNITY_EDITOR
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButton(0) && !Common.IsOverUI()) {
             _cursor.SetActive(true);
             var mousePosition = Common.GetCamera().ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0;
