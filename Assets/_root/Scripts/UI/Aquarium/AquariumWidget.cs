@@ -23,7 +23,7 @@ public class AquariumWidget : MonoBehaviour {
 
     // private CanvasGroup _cg;
     private float _appearAnimationDuration = 0.2f;
-    private Sequence _appearSeq;
+    private Sequence _seq;
 
     public State GetState() {
         return _state;

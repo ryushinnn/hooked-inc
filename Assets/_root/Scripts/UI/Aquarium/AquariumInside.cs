@@ -19,12 +19,12 @@ public class AquariumInside : MonoBehaviour {
 
     private bool _fishListShowing = false;
     private float _fishRectCollapsedSize = 174;
-    private float _fishRectExtendedSize = 775;
+    private float _fishRectExpandedSize = 775;
     private float _fishRectAnimationDuration = 0.5f;
     private float _buttonsRectCollapedPosX = -420;
-    private float _buttonsRectExtendedPosX = 45;
+    private float _buttonsRectExpandedPosX = 45;
     private float _buttonsRectAnimationDuration = 0.25f;
-    private Sequence _fishRectSeq;
+    private Sequence _fishSeq;
 
     // private float _currencyRectCollapsedPosX = 550;
     // private float _currencyRectExtendedPosX = -50;
@@ -37,23 +37,23 @@ public class AquariumInside : MonoBehaviour {
 
     private void Awake() {
         _btnBack.onClick.AddListener(Back);
-        _btnSelection.onClick.AddListener(() => ExtendOrCollapseFishRect());
+        _btnSelection.onClick.AddListener(() => ExpandOrCollapseFishRect());
     }
 
     private void OnEnable() {
         UIManager.GetUI<HomeUI>()?.Collapse(true);
         Appear();
-        ExtendOrCollapseFishRect(false);
+        ExpandOrCollapseFishRect(false);
     }
 
-    private void ExtendOrCollapseFishRect(bool? forcedValue = null) {
+    private void ExpandOrCollapseFishRect(bool? forcedValue = null) {
         _fishListShowing = forcedValue ?? !_fishListShowing;
-        _fishRectSeq?.Kill();
-        _fishRectSeq = DOTween.Sequence();
+        _fishSeq?.Kill();
+        _fishSeq = DOTween.Sequence();
 
         if (_fishListShowing) {
             _arrow.rotation = Quaternion.Euler(0, 0, 180);
-            _fishRectSeq.Append(DOVirtual.Float(_fishRectCollapsedSize, _fishRectExtendedSize,
+            _fishSeq.Append(DOVirtual.Float(_fishRectCollapsedSize, _fishRectExpandedSize,
                 forcedValue.HasValue ? 0 : _fishRectAnimationDuration,
                 value => {
                     _fishRect.sizeDelta = new Vector2(_fishRect.sizeDelta.x, value);
@@ -61,7 +61,7 @@ public class AquariumInside : MonoBehaviour {
                 .AppendCallback(() => {
                     _buttonsRect.gameObject.SetActive(true);
                 })
-                .Append(DOVirtual.Float(_buttonsRectCollapedPosX, _buttonsRectExtendedPosX,
+                .Append(DOVirtual.Float(_buttonsRectCollapedPosX, _buttonsRectExpandedPosX,
                     forcedValue.HasValue ? 0 : _buttonsRectAnimationDuration,
                     value => {
                         _buttonsRect.anchoredPosition = new Vector2(value, _buttonsRect.anchoredPosition.y);
@@ -70,7 +70,7 @@ public class AquariumInside : MonoBehaviour {
             _buttonsRect.anchoredPosition = new Vector2(_buttonsRectCollapedPosX, _buttonsRect.anchoredPosition.y);
             _buttonsRect.gameObject.SetActive(false);
             _arrow.rotation = Quaternion.Euler(0, 0, 0);
-            _fishRectSeq.Append(DOVirtual.Float(_fishRectExtendedSize, _fishRectCollapsedSize,
+            _fishSeq.Append(DOVirtual.Float(_fishRectExpandedSize, _fishRectCollapsedSize,
                 forcedValue.HasValue ? 0 : _fishRectAnimationDuration,
                 value => {
                     _fishRect.sizeDelta = new Vector2(_fishRect.sizeDelta.x, value);

@@ -26,21 +26,21 @@ public class HomeNavigation : MonoBehaviour {
     [BoxGroup("Menu"), SerializeField] private Button _btnRanking;
     [BoxGroup("Menu"), SerializeField] private Button _btnSetting;
     
-    public bool Extended => _extended;
+    public bool Expanded => _expanded;
 
-    private bool _extended;
+    private bool _expanded;
     private float _navRectCollapsedSize = 0;
-    private float _navRectExtendedSize = 1000;
+    private float _navRectExpandedSize = 1000;
     private float _navRectCollapedPosY = -330;
-    private float _navRectExtendedPosY = 42;
+    private float _navRectExpandedPosY = 42;
     private float _navRectAnimationDuration = 0.25f;
     private Sequence _navigationSeq;
 
     private float _menuBgOpacity = 0.8f;
     private float _menuRectCollapsedSize = 225;
-    private float _menuRectExtendedSize = 736;
+    private float _menuRectExpandedSize = 736;
     private float _menuLayoutCollapsedSpacing = -184;
-    private float _menuLayoutExtendedSpacing = -33;
+    private float _menuLayoutExpandedSpacing = -33;
     private float _menuRectAnimationDuration = 0.5f;
     private Sequence _menuSeq;
 
@@ -56,32 +56,32 @@ public class HomeNavigation : MonoBehaviour {
         _btnRanking.onClick.AddListener(OpenRanking);
         _btnSetting.onClick.AddListener(OpenSetting);
         
-        ExtendOrCollapse(true, true);
+        ExpandOrCollapse(true, true);
     }
 
-    public void ExtendOrCollapse(bool extend, bool ignoreAnimation) {
-        _extended = extend;
+    public void ExpandOrCollapse(bool extend, bool ignoreAnimation) {
+        _expanded = extend;
         _navigationSeq?.Kill();
 
         if (ignoreAnimation) {
-            _navigationRect.sizeDelta = new Vector2(_extended ? _navRectExtendedSize : _navRectCollapsedSize, _navigationRect.sizeDelta.y);
-            _navigationRect.anchoredPosition = new Vector2(_navigationRect.anchoredPosition.x, _extended ? _navRectExtendedPosY : _navRectCollapedPosY);
+            _navigationRect.sizeDelta = new Vector2(_expanded ? _navRectExpandedSize : _navRectCollapsedSize, _navigationRect.sizeDelta.y);
+            _navigationRect.anchoredPosition = new Vector2(_navigationRect.anchoredPosition.x, _expanded ? _navRectExpandedPosY : _navRectCollapedPosY);
             return;
         }
         
         _navigationSeq = DOTween.Sequence();
-        if (_extended) {
+        if (_expanded) {
             _navigationRect.sizeDelta = new Vector2(0, _navigationRect.sizeDelta.y);
-            _navigationSeq.Append(DOVirtual.Float(_navRectCollapedPosY, _navRectExtendedPosY, _navRectAnimationDuration,
+            _navigationSeq.Append(DOVirtual.Float(_navRectCollapedPosY, _navRectExpandedPosY, _navRectAnimationDuration,
                 value => {
                     _navigationRect.anchoredPosition = new Vector2(_navigationRect.anchoredPosition.x, value);
                 }).SetEase(Ease.OutBack))
-                .Append(DOVirtual.Float(_navRectCollapsedSize, _navRectExtendedSize, _navRectAnimationDuration,
+                .Append(DOVirtual.Float(_navRectCollapsedSize, _navRectExpandedSize, _navRectAnimationDuration,
                     value => {
                         _navigationRect.sizeDelta = new Vector2(value, _navigationRect.sizeDelta.y);
                     }).SetEase(Ease.OutBack));
         } else {
-            _navigationSeq.Append(DOVirtual.Float(_navRectExtendedPosY, _navRectCollapedPosY, _navRectAnimationDuration,
+            _navigationSeq.Append(DOVirtual.Float(_navRectExpandedPosY, _navRectCollapedPosY, _navRectAnimationDuration,
                 value => {
                     _navigationRect.anchoredPosition = new Vector2(_navigationRect.anchoredPosition.x, value);
                 }).SetEase(Ease.InBack));
@@ -111,11 +111,11 @@ public class HomeNavigation : MonoBehaviour {
         _cg.alpha = 0;
         _menuSeq?.Kill();
         _menuSeq = DOTween.Sequence();
-        _menuSeq.Append(DOVirtual.Float(_menuRectCollapsedSize, _menuRectExtendedSize, _menuRectAnimationDuration,
+        _menuSeq.Append(DOVirtual.Float(_menuRectCollapsedSize, _menuRectExpandedSize, _menuRectAnimationDuration,
             value => {
                 _menuRect.sizeDelta = new Vector2(_menuRect.sizeDelta.x, value);
             }).SetEase(Ease.OutBack))
-            .Join(DOVirtual.Float(_menuLayoutCollapsedSpacing, _menuLayoutExtendedSpacing, _menuRectAnimationDuration, 
+            .Join(DOVirtual.Float(_menuLayoutCollapsedSpacing, _menuLayoutExpandedSpacing, _menuRectAnimationDuration, 
                 value => {
                 _menuLayout.spacing = value;
             }))
@@ -133,11 +133,11 @@ public class HomeNavigation : MonoBehaviour {
         _cg.alpha = 1;
         _menuSeq.Kill();
         _menuSeq = DOTween.Sequence();
-        _menuSeq.Append(DOVirtual.Float(_menuRectExtendedSize, _menuRectCollapsedSize, _menuRectAnimationDuration/2,
+        _menuSeq.Append(DOVirtual.Float(_menuRectExpandedSize, _menuRectCollapsedSize, _menuRectAnimationDuration/2,
             value => {
                 _menuRect.sizeDelta = new Vector2(_menuRect.sizeDelta.x, value);
             }).SetEase(Ease.InBack))
-            .Join(DOVirtual.Float(_menuLayoutExtendedSpacing, _menuLayoutCollapsedSpacing, _menuRectAnimationDuration/2, 
+            .Join(DOVirtual.Float(_menuLayoutExpandedSpacing, _menuLayoutCollapsedSpacing, _menuRectAnimationDuration/2, 
                 value => {
                 _menuLayout.spacing = value;
             }).SetEase(Ease.InBack))

@@ -17,18 +17,18 @@ public class HomeProfile : MonoBehaviour {
     [BoxGroup("Player Info"), SerializeField] private TMP_Text _txtLevel;
     [BoxGroup("Player Info"), SerializeField] private Image _imgXp;
     
-    public bool Extended => _extended;
+    public bool Expanded => _expanded;
 
-    private bool _extended;
-    private float _avtRectExtendedPosX = 65;
+    private bool _expanded;
+    private float _avtRectExpandedPosX = 65;
     private float _avtRectCollapsedPosX = -153;
-    private float _lvAndXpRectExtendedPosX = 257;
+    private float _lvAndXpRectExpandedPosX = 257;
     private float _lvAndXpRectCollapsedPosX = -151;
     private float _animationDuration = 0.5f;
-    private Sequence _extendOrCollapseSeq;
+    private Sequence _seq;
 
     private void Awake() {
-        ExtendOrCollapse(true, true);
+        ExpandOrCollapse(true, true);
     }
 
     private void OnEnable() {
@@ -41,34 +41,34 @@ public class HomeProfile : MonoBehaviour {
         MessageDispatcher<GameEvent.OnXpChanged>.RemoveListener(SetLevelAndXp);
     }
 
-    public void ExtendOrCollapse(bool extend, bool ignoreAnimation) {
-        _extended = extend;
-        _extendOrCollapseSeq?.Kill();
+    public void ExpandOrCollapse(bool extend, bool ignoreAnimation) {
+        _expanded = extend;
+        _seq?.Kill();
         
         if (ignoreAnimation) {
-            _avtRect.anchoredPosition = new Vector2(_extended ? _avtRectExtendedPosX : _avtRectCollapsedPosX, _avtRect.anchoredPosition.y);
-            _lvRect.anchoredPosition = new Vector2(_extended ? _lvAndXpRectExtendedPosX : _lvAndXpRectCollapsedPosX, _lvRect.anchoredPosition.y);
-            _xpRect.anchoredPosition = new Vector2(_extended ? _lvAndXpRectExtendedPosX : _lvAndXpRectCollapsedPosX, _xpRect.anchoredPosition.y);
+            _avtRect.anchoredPosition = new Vector2(_expanded ? _avtRectExpandedPosX : _avtRectCollapsedPosX, _avtRect.anchoredPosition.y);
+            _lvRect.anchoredPosition = new Vector2(_expanded ? _lvAndXpRectExpandedPosX : _lvAndXpRectCollapsedPosX, _lvRect.anchoredPosition.y);
+            _xpRect.anchoredPosition = new Vector2(_expanded ? _lvAndXpRectExpandedPosX : _lvAndXpRectCollapsedPosX, _xpRect.anchoredPosition.y);
             return;
         }
         
-        _extendOrCollapseSeq = DOTween.Sequence();
-        if (_extended) {
-            _extendOrCollapseSeq.Append(DOVirtual.Float(_avtRectCollapsedPosX, _avtRectExtendedPosX, _animationDuration,
+        _seq = DOTween.Sequence();
+        if (_expanded) {
+            _seq.Append(DOVirtual.Float(_avtRectCollapsedPosX, _avtRectExpandedPosX, _animationDuration,
                 value => {
                     _avtRect.anchoredPosition = new Vector2(value, _avtRect.anchoredPosition.y);
                 }).SetEase(Ease.OutCubic))
-                .Join(DOVirtual.Float(_lvAndXpRectCollapsedPosX, _lvAndXpRectExtendedPosX, _animationDuration,
+                .Join(DOVirtual.Float(_lvAndXpRectCollapsedPosX, _lvAndXpRectExpandedPosX, _animationDuration,
                     value => {
                         _lvRect.anchoredPosition = new Vector2(value, _lvRect.anchoredPosition.y);
                         _xpRect.anchoredPosition3D = new Vector2(value, _xpRect.anchoredPosition.y);
                     }).SetEase(Ease.OutBack));
         } else {
-            _extendOrCollapseSeq.Append(DOVirtual.Float(_avtRectExtendedPosX, _avtRectCollapsedPosX, _animationDuration/2,
+            _seq.Append(DOVirtual.Float(_avtRectExpandedPosX, _avtRectCollapsedPosX, _animationDuration/2,
                 value => {
                     _avtRect.anchoredPosition = new Vector2(value, _avtRect.anchoredPosition.y);
                 }).SetEase(Ease.InCubic))
-                .Join(DOVirtual.Float(_lvAndXpRectExtendedPosX, _lvAndXpRectCollapsedPosX, _animationDuration/2,
+                .Join(DOVirtual.Float(_lvAndXpRectExpandedPosX, _lvAndXpRectCollapsedPosX, _animationDuration/2,
                     value => {
                         _lvRect.anchoredPosition = new Vector2(value, _lvRect.anchoredPosition.y);
                         _xpRect.anchoredPosition = new Vector2(value, _xpRect.anchoredPosition.y);

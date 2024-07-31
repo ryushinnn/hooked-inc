@@ -14,10 +14,10 @@ public class AquariumDetail : MonoBehaviour {
     [SerializeField] private SlidableDialog _slidableDialog;
 
     private float _dialogRectCollapsedSize = 0;
-    private float _dialogRectExtendedSize = 1048;
+    private float _dialogRectExpandedSize = 1048;
     private float _dialogRectAnimationDuration = 0.5f;
     private float _bgOpacity = 0.8f;
-    private Sequence _extendOrCollapseSeq;
+    private Sequence _seq;
 
     private void Awake() {
         _btnCancel.onClick.AddListener(Cancel);
@@ -27,22 +27,22 @@ public class AquariumDetail : MonoBehaviour {
     }
 
     private void OnEnable() {
-        ExtendOrCollapse(true);
+        ExpandOrCollapse(true);
     }
 
-    private void ExtendOrCollapse(bool extend, Action onComplete = null) {
-        _extendOrCollapseSeq?.Kill();
-        _extendOrCollapseSeq = DOTween.Sequence();
+    private void ExpandOrCollapse(bool extend, Action onComplete = null) {
+        _seq?.Kill();
+        _seq = DOTween.Sequence();
         if (extend) {
             _imgBg.color = new Color(0, 0, 0, 0);
-            _extendOrCollapseSeq.Append(DOVirtual.Float(_dialogRectCollapsedSize, _dialogRectExtendedSize,
+            _seq.Append(DOVirtual.Float(_dialogRectCollapsedSize, _dialogRectExpandedSize,
                 _dialogRectAnimationDuration, value => {
                     _dialogRect.sizeDelta = new Vector2(_dialogRect.sizeDelta.x, value);
                 }).SetEase(Ease.OutBack))
                 .Join(_imgBg.DOFade(_bgOpacity, _dialogRectAnimationDuration));
         } else {
             _imgBg.color = new Color(0, 0, 0, _bgOpacity);
-            _extendOrCollapseSeq.Append(DOVirtual.Float(_dialogRectExtendedSize, _dialogRectCollapsedSize,
+            _seq.Append(DOVirtual.Float(_dialogRectExpandedSize, _dialogRectCollapsedSize,
                 _dialogRectAnimationDuration, value => {
                     _dialogRect.sizeDelta = new Vector2(_dialogRect.sizeDelta.x, value);
                 }).SetEase(Ease.InBack).OnComplete(() => {
@@ -54,12 +54,12 @@ public class AquariumDetail : MonoBehaviour {
 
     private void Cancel() {
         // ???
-        ExtendOrCollapse(false, Close);
+        ExpandOrCollapse(false, Close);
     }
 
     private void Purchase() {
         // ???
-        ExtendOrCollapse(false, Close);
+        ExpandOrCollapse(false, Close);
     }
 
     private void Close() {

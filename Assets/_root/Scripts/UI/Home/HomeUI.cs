@@ -15,18 +15,18 @@ public class HomeUI : UI {
     [SerializeField] private GameObject _currency;
     
     [Button]
-    public void Extend(bool ignoreAnimation = false) {
+    public void Expand(bool ignoreAnimation = false) {
         _currency.SetActive(true);
-        if (!_profile.Extended) _profile.ExtendOrCollapse(true, ignoreAnimation);
-        if (!_side.Extended) _side.ExtendOrCollapse(true, ignoreAnimation);
-        if (!_navigation.Extended) _navigation.ExtendOrCollapse(true, ignoreAnimation);
+        if (!_profile.Expanded) _profile.ExpandOrCollapse(true, ignoreAnimation);
+        if (!_side.Expanded) _side.ExpandOrCollapse(true, ignoreAnimation);
+        if (!_navigation.Expanded) _navigation.ExpandOrCollapse(true, ignoreAnimation);
     }
 
     [Button]
     public void Collapse(bool completely, bool ignoreAnimation = false) {
-        if (completely == _profile.Extended) _profile.ExtendOrCollapse(!completely, ignoreAnimation);
+        if (completely == _profile.Expanded) _profile.ExpandOrCollapse(!completely, ignoreAnimation);
         _currency.SetActive(!completely);
-        if (_side.Extended) _side.ExtendOrCollapse(false, ignoreAnimation);
-        if (_navigation.Extended) _navigation.ExtendOrCollapse(false, ignoreAnimation);
+        if (_side.Expanded) _side.ExpandOrCollapse(false, ignoreAnimation);
+        if (_navigation.Expanded) _navigation.ExpandOrCollapse(false, ignoreAnimation);
     }
 }

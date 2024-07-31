@@ -12,35 +12,35 @@ public class HomeSide : MonoBehaviour {
     
     private List<RectTransform> _rects = new();
 
-    public bool Extended => _extended;
+    public bool Expanded => _expanded;
 
-    private bool _extended;
-    private float _rectExtendedPosX = -35;
+    private bool _expanded;
+    private float _rectExpandedPosX = -35;
     private float _rectCollapsedPosX = 148;
     private float _rectAnimationDuration = 0.25f;
-    private Sequence _extendOfCollapseSeq;
+    private Sequence _seq;
 
     private void Awake() {
         _btnMission.onClick.AddListener(OpenDailyMission);
         
-        ExtendOrCollapse(true, true);
+        ExpandOrCollapse(true, true);
     }
 
-    public void ExtendOrCollapse(bool extend, bool ignoreAnimation) {
+    public void ExpandOrCollapse(bool extend, bool ignoreAnimation) {
         if (!_rects.IsNotEmpty()) {
             foreach (Transform child in transform) {
                 _rects.Add(child.GetComponent<RectTransform>());
             }
         }
 
-        _extended = extend;
-        _extendOfCollapseSeq?.Kill();
-        _extendOfCollapseSeq = DOTween.Sequence();
+        _expanded = extend;
+        _seq?.Kill();
+        _seq = DOTween.Sequence();
         for (int i = 0; i < _rects.Count; i++) {
             var rect = _rects[i];
-            _extendOfCollapseSeq.Join(DOVirtual.Float(
-                _extended ? _rectCollapsedPosX : _rectExtendedPosX,
-                _extended ? _rectExtendedPosX : _rectCollapsedPosX,
+            _seq.Join(DOVirtual.Float(
+                _expanded ? _rectCollapsedPosX : _rectExpandedPosX,
+                _expanded ? _rectExpandedPosX : _rectCollapsedPosX,
                 _rectAnimationDuration, value => {
                     rect.anchoredPosition = new Vector2(value, rect.anchoredPosition.y);
                 }));

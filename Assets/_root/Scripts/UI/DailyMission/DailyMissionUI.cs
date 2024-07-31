@@ -37,7 +37,7 @@ public class DailyMissionUI : UI {
 
     public override void Close() {
         base.Close();
-        UIManager.GetUI<HomeUI>()?.Extend();
+        UIManager.GetUI<HomeUI>()?.Expand();
     }
 
     private void Expand() {

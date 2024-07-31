@@ -16,10 +16,10 @@ public class AquariumBoard : MonoBehaviour {
 
     private List<AquariumWidget> _widgets = new();
     private RectTransform _boardRect;
-    private float _boardRectCollapsedsize = -1970;
-    private float _boardRectExtendedsize = -629;
+    private float _boardRectCollapsedSize = -1970;
+    private float _boardRectExpandedSize = -629;
     private float _boardRectAnimationDuration = 0.5f;
-    private Sequence _extendSeq;
+    private Sequence _expandSeq;
     
     private void Awake() {
         _btnClose.onClick.AddListener(Close);
@@ -38,7 +38,7 @@ public class AquariumBoard : MonoBehaviour {
     private void OnEnable() {
         // ShowWidgets();
         UIManager.GetUI<HomeUI>()?.Collapse(false);
-        Extend();
+        Expand();
     }
 
     private void ShowWidgets() {
@@ -48,10 +48,10 @@ public class AquariumBoard : MonoBehaviour {
     }
 
     [Button]
-    private void Extend() {
-        _extendSeq?.Kill();
-        _extendSeq = DOTween.Sequence();
-        _extendSeq.Append(DOVirtual.Float(_boardRectCollapsedsize, _boardRectExtendedsize, _boardRectAnimationDuration,
+    private void Expand() {
+        _expandSeq?.Kill();
+        _expandSeq = DOTween.Sequence();
+        _expandSeq.Append(DOVirtual.Float(_boardRectCollapsedSize, _boardRectExpandedSize, _boardRectAnimationDuration,
             value => {
                 _boardRect.sizeDelta = new Vector2(_boardRect.sizeDelta.x, value);
             }).SetEase(Ease.OutBack));
