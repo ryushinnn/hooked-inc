@@ -13,11 +13,11 @@ public class UIManager : Singleton<UIManager> {
 
     private Stack<UI> _cache = new();
 
-    public static UI GetUI<T>() where T : UI {
+    public static T GetUI<T>() where T : UI {
         return Instance()._uiList.OfType<T>().FirstOrDefault();
     }
 
-    public static void OpenUI<T>(bool stack = false) where T : UI {
+    public static void OpenUI<T>(bool stack = false, params object[] prs) where T : UI {
         var ui = GetUI<T>();
         if (!ui) {
             ALog.Log($"UI with type {typeof(T).Name} is missing!!!");
@@ -33,7 +33,7 @@ public class UIManager : Singleton<UIManager> {
             Instance()._cache.Clear();
         }
         
-        ui.Open();
+        ui.Open(prs);
     }
 
     public static void CloseUI<T>() where T : UI {
@@ -47,11 +47,6 @@ public class UIManager : Singleton<UIManager> {
         if (Instance()._cache.Count > 0) {
             Instance()._cache.Pop().Open();
         }
-    }
-
-    [Button]
-    private void OpenHome() {
-        OpenUI<HomeUI>();
     }
 
 #if UNITY_EDITOR

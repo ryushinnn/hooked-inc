@@ -26,8 +26,8 @@ public class AquariumInside : MonoBehaviour {
     private float _buttonsRectAnimationDuration = 0.25f;
     private Sequence _fishRectSeq;
 
-    private float _currencyRectCollapsedPosX = 550;
-    private float _currencyRectExtendedPosX = -50;
+    // private float _currencyRectCollapsedPosX = 550;
+    // private float _currencyRectExtendedPosX = -50;
     private float _fishRectCollapsedPosY = -300;
     private float _fishRectExtendedPosY = 2.5f;
     private float _feedRectCollapsedPosY = -300;
@@ -41,6 +41,7 @@ public class AquariumInside : MonoBehaviour {
     }
 
     private void OnEnable() {
+        UIManager.GetUI<HomeUI>()?.Collapse(true);
         Appear();
         ExtendOrCollapseFishRect(false);
     }
@@ -80,10 +81,11 @@ public class AquariumInside : MonoBehaviour {
     private void Appear() {
         _appearSeq?.Kill();
         _appearSeq = DOTween.Sequence();
-        _appearSeq.Append(DOVirtual.Float(_currencyRectCollapsedPosX, _currencyRectExtendedPosX, _appearAnimationDuration, 
-                value => {
-                    _currencyRect.anchoredPosition = new Vector2(value, _currencyRect.anchoredPosition.y);
-                }).SetEase(Ease.OutBack))
+        _appearSeq
+                // .Append(DOVirtual.Float(_currencyRectCollapsedPosX, _currencyRectExtendedPosX, _appearAnimationDuration, 
+                // value => {
+                //     _currencyRect.anchoredPosition = new Vector2(value, _currencyRect.anchoredPosition.y);
+                // }).SetEase(Ease.OutBack))
                 .Join(DOVirtual.Float(_fishRectCollapsedPosY, _fishRectExtendedPosY, _appearAnimationDuration,
                 value => {
                     _fishRect.anchoredPosition = new Vector2(_fishRect.anchoredPosition.x, value);

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class UI : MonoBehaviour
 {
-    public virtual void Open(params object[] args){}
-    public virtual void Close(params object [] args){}
+    public virtual void Open(params object[] prs){}
+    public virtual void Close(){}
 }
