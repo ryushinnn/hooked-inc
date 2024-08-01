@@ -1237,6 +1237,63 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!1001 &1266752361
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 595276650113079738, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.3300796
+      objectReference: {fileID: 0}
+    - target: {fileID: 595276650113079738, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.448341
+      objectReference: {fileID: 0}
+    - target: {fileID: 595276650113079738, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 595276650113079738, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 595276650113079738, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 595276650113079738, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 595276650113079738, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 595276650113079738, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 595276650113079738, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 595276650113079738, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8274947648005018279, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
+      propertyPath: m_Name
+      value: Crate
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: be92562e63dce3346ac0f6aa954cdbbc, type: 3}
 --- !u!224 &1382656404 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7633394296150375061, guid: 693779cfe14bbda4f9368a2d48b265d5, type: 3}
@@ -1927,6 +1984,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1956352858}
   - component: {fileID: 1956352857}
+  - component: {fileID: 1956352860}
   - component: {fileID: 1956352859}
   m_Layer: 0
   m_Name: Water
@@ -1976,7 +2034,7 @@ SpriteRenderer:
   m_SortingLayerID: 1665837921
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d6d23387655264544a270734f7b92fad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: de8996d8e76b8b84f8a9a4d24f9dbe44, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2018,6 +2076,43 @@ MonoBehaviour:
   normalStrength: 5
   normalSmoothing: 1
   computingNormal: 0
+--- !u!114 &1956352860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956352856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efe55084100f81d4e8a3a357265b4d42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waterMaterial: {fileID: 2100000, guid: 49046abb3fc98ed458f9e391fb9ce6f6, type: 2}
+  _boatTrailMaterial: {fileID: 2100000, guid: 431f76cc062348949b8fea0093a5376a, type: 2}
+  _crateTrailMaterial: {fileID: 2100000, guid: cfc730b3142f0bc49842b23c9273bbfe, type: 2}
+  _presets:
+  - ID: 0_blue
+    Water: {x: 0, y: 1, z: 1}
+    Trail: {x: 0, y: 1, z: 0.8}
+  - ID: 1_deep_blue
+    Water: {x: 317, y: 1.55, z: 0.5}
+    Trail: {x: 320, y: 1.57, z: 0.51}
+  - ID: 2_emeral
+    Water: {x: 34, y: 0.87, z: 1}
+    Trail: {x: 63, y: 0.74, z: 0.88}
+  - ID: 3_green
+    Water: {x: 50, y: 1.03, z: 1.1}
+    Trail: {x: 84, y: 0.56, z: 1.07}
+  - ID: 4_pink
+    Water: {x: 203, y: 0.84, z: 1}
+    Trail: {x: 196, y: 0.67, z: 1}
+  - ID: 5_purple
+    Water: {x: 256, y: 0.71, z: 1}
+    Trail: {x: 230, y: 0.72, z: 0.94}
+  - ID: 6_yellow
+    Water: {x: 167, y: 0.69, z: 1.77}
+    Trail: {x: 181, y: 1.21, z: 0.64}
 --- !u!1 &2065324033
 GameObject:
   m_ObjectHideFlags: 0
@@ -4876,3 +4971,4 @@ SceneRoots:
   - {fileID: 1520391942}
   - {fileID: 390644364}
   - {fileID: 2065324034}
+  - {fileID: 1266752361}

@@ -24,8 +24,8 @@ public class HomeUI : UI {
 
     [Button]
     public void Collapse(bool completely, bool ignoreAnimation = false) {
-        if (completely == _profile.Expanded) _profile.ExpandOrCollapse(!completely, ignoreAnimation);
         _currency.SetActive(!completely);
+        if (completely == _profile.Expanded) _profile.ExpandOrCollapse(!completely, ignoreAnimation);
         if (_side.Expanded) _side.ExpandOrCollapse(false, ignoreAnimation);
         if (_navigation.Expanded) _navigation.ExpandOrCollapse(false, ignoreAnimation);
     }

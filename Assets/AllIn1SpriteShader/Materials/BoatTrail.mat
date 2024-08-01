@@ -148,9 +148,9 @@ Material:
     - _HologramStripesAmount: 0.1
     - _HologramStripesSpeed: 4.5
     - _HologramUnmodAmount: 0
-    - _HsvBright: 0.6
-    - _HsvSaturation: 1
-    - _HsvShift: 0
+    - _HsvBright: 0.88
+    - _HsvSaturation: 0.74
+    - _HsvShift: 63
     - _InnerOutlineAlpha: 1
     - _InnerOutlineGlow: 4
     - _InnerOutlineThickness: 1
