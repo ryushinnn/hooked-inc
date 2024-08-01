@@ -87,6 +87,7 @@ GameObject:
   - component: {fileID: 8573047443301468191}
   - component: {fileID: 495492863911103903}
   - component: {fileID: 5526112693089547118}
+  - component: {fileID: 6969225703071264551}
   m_Layer: 5
   m_Name: FishTankWidget
   m_TagString: Untagged
@@ -194,10 +195,22 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 495492863911103903}
+  m_TargetGraphic: {fileID: 3024369818424366178}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6969225703071264551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4062561025675292340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c79af3b6e1d85e4faadc029ab57dd44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5211495985347447070
 GameObject:
   m_ObjectHideFlags: 0
