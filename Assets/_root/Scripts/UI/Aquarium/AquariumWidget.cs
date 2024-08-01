@@ -22,8 +22,8 @@ public class AquariumWidget : MonoBehaviour {
     [SerializeField] private State _state;
 
     // private CanvasGroup _cg;
-    private float _appearAnimationDuration = 0.2f;
-    private Sequence _seq;
+    // private float _appearAnimationDuration = 0.2f;
+    // private Sequence _seq;
 
     public State GetState() {
         return _state;
