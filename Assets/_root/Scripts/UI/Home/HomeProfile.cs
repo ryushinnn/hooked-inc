@@ -14,6 +14,7 @@ public class HomeProfile : MonoBehaviour {
     [SerializeField] private RectTransform _xpRect;
     
     [BoxGroup("Player Info"), SerializeField] private Image _imgAvt;
+    [BoxGroup("Player Info"), SerializeField] private Button _btnAvt;
     [BoxGroup("Player Info"), SerializeField] private TMP_Text _txtLevel;
     [BoxGroup("Player Info"), SerializeField] private Image _imgXp;
     
@@ -28,6 +29,7 @@ public class HomeProfile : MonoBehaviour {
     private Sequence _seq;
 
     private void Awake() {
+        _btnAvt.onClick.AddListener(OpenMyInfo);
         ExpandOrCollapse(true, true);
     }
 
@@ -83,5 +85,9 @@ public class HomeProfile : MonoBehaviour {
     private void SetLevelAndXp(int lv, int curXp, int nextXp) {
         _txtLevel.text = lv.ToString();
         _imgXp.fillAmount = 1f * curXp / nextXp;
+    }
+
+    private void OpenMyInfo() {
+        UIManager.OpenUI<MyInfoUI>();
     }
 }
