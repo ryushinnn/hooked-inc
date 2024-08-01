@@ -107,8 +107,8 @@ Material:
     - _ColorSwapRedLuminosity: 0.5
     - _Contrast: 1
     - _CullingOption: 0
-    - _DistortAmount: 0.5
-    - _DistortTexXSpeed: 5
+    - _DistortAmount: 0.55
+    - _DistortTexXSpeed: 0
     - _DistortTexYSpeed: 5
     - _EditorDrawers: 6
     - _FadeAmount: 0.047
@@ -187,7 +187,7 @@ Material:
     - _RectSize: 1
     - _RotateUvAmount: 0
     - _RoundWaveSpeed: 2
-    - _RoundWaveStrength: 0.7
+    - _RoundWaveStrength: 0.107
     - _ShadowAlpha: 0.5
     - _ShadowX: 0.1
     - _ShadowY: -0.05
@@ -204,11 +204,11 @@ Material:
     - _TwistUvPosX: 0.5
     - _TwistUvPosY: 0.5
     - _TwistUvRadius: 0.75
-    - _WaveAmount: 25
-    - _WaveSpeed: 25
-    - _WaveStrength: 25
-    - _WaveX: 0
-    - _WaveY: 0.5
+    - _WaveAmount: 13.9
+    - _WaveSpeed: 6.8
+    - _WaveStrength: 12.2
+    - _WaveX: 0.498
+    - _WaveY: 0
     - _ZTestMode: 4
     - _ZWrite: 0
     - _ZoomUvAmount: 0.5
