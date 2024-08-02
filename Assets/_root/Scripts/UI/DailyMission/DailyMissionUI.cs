@@ -30,14 +30,14 @@ public class DailyMissionUI : UI {
 
     public override void Open(params object[] prs) {
         base.Open(prs);
-        UIManager.GetUI<HomeUI>()?.Collapse(false);
+        UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.ExceptSide);
         Expand();
         ScrollToTop();
     }
 
     public override void Close() {
         base.Close();
-        UIManager.GetUI<HomeUI>()?.Expand();
+        UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.All);
     }
 
     private void Expand() {

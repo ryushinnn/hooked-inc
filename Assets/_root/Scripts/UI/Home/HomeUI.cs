@@ -13,20 +13,32 @@ public class HomeUI : UI {
     [SerializeField] private HomeNavigation _navigation;
     [SerializeField] private HomeProfile _profile;
     [SerializeField] private GameObject _currency;
-    
-    [Button]
-    public void Expand(bool ignoreAnimation = false) {
-        _currency.SetActive(true);
-        if (!_profile.Expanded) _profile.ExpandOrCollapse(true, ignoreAnimation);
-        if (!_side.Expanded) _side.ExpandOrCollapse(true, ignoreAnimation);
-        if (!_navigation.Expanded) _navigation.ExpandOrCollapse(true, ignoreAnimation);
+
+    public void ChangeState(State state, bool ignoreAnimation = false) {
+        var hasCurrency = CheckState(State.Currency, state);
+        var hasProfile = CheckState(State.Profile, state);
+        var hasNavigation = CheckState(State.Navigation, state);
+        var hasSide = CheckState(State.Side, state);
+        
+        if (hasCurrency != _currency.activeSelf) _currency.SetActive(hasCurrency);
+        if (hasProfile != _profile.Expanded) _profile.ExpandOrCollapse(hasProfile, ignoreAnimation);
+        if (hasNavigation != _navigation.Expanded) _navigation.ExpandOrCollapse(hasNavigation, ignoreAnimation);
+        if (hasSide != _side.Expanded) _side.ExpandOrCollapse(hasSide, ignoreAnimation);
     }
 
-    [Button]
-    public void Collapse(bool completely, bool ignoreAnimation = false) {
-        _currency.SetActive(!completely);
-        if (completely == _profile.Expanded) _profile.ExpandOrCollapse(!completely, ignoreAnimation);
-        if (_side.Expanded) _side.ExpandOrCollapse(false, ignoreAnimation);
-        if (_navigation.Expanded) _navigation.ExpandOrCollapse(false, ignoreAnimation);
+    private bool CheckState(State value, State combination) {
+        return (combination & value) == value;
+    }
+    
+    [Flags]
+    public enum State {
+        None = 0,
+        Profile = 0x01,
+        Currency = 0x02,
+        Navigation = 0x04,
+        Side = 0x08,
+        ProfileAndCurrency = Profile | Currency,
+        ExceptSide = Profile | Currency | Navigation,
+        All = Profile | Currency | Navigation | Side
     }
 }

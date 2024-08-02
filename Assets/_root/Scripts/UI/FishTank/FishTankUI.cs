@@ -30,13 +30,13 @@ public class FishTankUI : UI {
     
     public override void Open(params object[] prs) {
         gameObject.SetActive(true);
-        UIManager.GetUI<HomeUI>()?.Collapse(false);
+        UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.ExceptSide);
         Expand();
     }
 
     public override void Close() {
         gameObject.SetActive(false);
-        UIManager.GetUI<HomeUI>()?.Expand();
+        UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.All);
     }
 
     private void Expand() {

@@ -23,6 +23,6 @@ public class ShopCategory : MonoBehaviour {
     }
 
     private void OnEnable() {
-        UIManager.GetUI<HomeUI>()?.Collapse(false);
+        UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.ExceptSide);
     }
 }

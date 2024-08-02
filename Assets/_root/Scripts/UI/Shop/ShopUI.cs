@@ -35,7 +35,7 @@ public class ShopUI : UI {
     
     public override void Close() {
         gameObject.SetActive(false);
-        UIManager.GetUI<HomeUI>()?.Expand();
+        UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.All);
     }
 
     private void Expand(bool full) {
@@ -45,7 +45,7 @@ public class ShopUI : UI {
         _seq.Append(DOVirtual.Float(_boardRectLastSize, expectedSize, _boardRectAnimationDuration,
             value => {
                 _boardRect.sizeDelta = new Vector2(_boardRect.sizeDelta.x, value);
-            }).SetEase(Ease.OutBack));
+            }).SetEase(full ? Ease.InOutBack : Ease.OutBack));
 
         _boardRectLastSize = expectedSize;
     }

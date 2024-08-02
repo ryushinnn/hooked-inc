@@ -63,9 +63,10 @@ public class MyInfoIndicator : MonoBehaviour, IDragHandler, IBeginDragHandler, I
             _snapSeq.Append(DOVirtual.Float(curSize, expanded ? _expandedSize : _collapsedSize, _snapDuration, 
                 value => {
                     _boardRect.sizeDelta = new Vector2(_boardRect.sizeDelta.x, value);
-                }).SetEase(Ease.OutBack));
+                }).SetEase(expanded ? Ease.InOutBack : Ease.OutBack));
             _arrow.localRotation = Quaternion.Euler(0, 0, expanded ? 0 : 180);
             LockScrollRect(!expanded);
+            UIManager.GetUI<HomeUI>()?.ChangeState(expanded ? HomeUI.State.ProfileAndCurrency : HomeUI.State.ExceptSide);
         } else {
             // determine which side to snap by distance
             var expanded = curSize > (_expandedSize + _collapsedSize) / 2;
@@ -73,9 +74,10 @@ public class MyInfoIndicator : MonoBehaviour, IDragHandler, IBeginDragHandler, I
             _snapSeq.Append(DOVirtual.Float(curSize, expanded ? _expandedSize : _collapsedSize, _snapDuration, 
                 value => {
                     _boardRect.sizeDelta = new Vector2(_boardRect.sizeDelta.x, value);
-                }).SetEase(Ease.OutBack));
+                }).SetEase(expanded ? Ease.InOutBack : Ease.OutBack));
             _arrow.localRotation = Quaternion.Euler(0, 0, expanded ? 0 : 180);
             LockScrollRect(!expanded);
+            UIManager.GetUI<HomeUI>()?.ChangeState(expanded ? HomeUI.State.ProfileAndCurrency : HomeUI.State.ExceptSide);
         }
     }
 

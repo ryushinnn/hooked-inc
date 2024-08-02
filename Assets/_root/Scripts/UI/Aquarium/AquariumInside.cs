@@ -41,7 +41,7 @@ public class AquariumInside : MonoBehaviour {
     }
 
     private void OnEnable() {
-        UIManager.GetUI<HomeUI>()?.Collapse(true);
+        UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.None);
         Appear();
         ExpandOrCollapseFishRect(false);
     }

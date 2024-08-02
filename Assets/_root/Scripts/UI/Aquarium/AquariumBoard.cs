@@ -37,7 +37,7 @@ public class AquariumBoard : MonoBehaviour {
 
     private void OnEnable() {
         // ShowWidgets();
-        UIManager.GetUI<HomeUI>()?.Collapse(false);
+        UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.ExceptSide);
         Expand();
     }
 

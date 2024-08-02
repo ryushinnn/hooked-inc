@@ -21,7 +21,7 @@ public class AquariumUI : UI {
 
     public override void Close() {
         gameObject.SetActive(false);
-        UIManager.GetUI<HomeUI>()?.Expand();
+        UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.All);
     }
 
     private void SelectWidget(AquariumWidget widget) {
