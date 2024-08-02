@@ -36,7 +36,7 @@ public class EliteFish : MovableObject {
         _tween?.Kill();
         OnDisappear();
         Inventory.Instance().ReceiveMoney(_value);
-        MessageDispatcher<GameEvent.OnFloatingTextRequested>.Trigger.Invoke($"+${_value:N0}", transform.position);
+        EventDispatcher<GameEvent.OnFloatingTextRequested>.Trigger.Invoke($"+${_value:N0}", transform.position);
     }
     
     protected override void OnDisappear() {

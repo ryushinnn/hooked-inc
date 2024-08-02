@@ -14,7 +14,7 @@ public class Inventory : Singleton<Inventory> {
 
     public void ReceiveMoney(float amount) {
         _currentMoney += amount;
-        MessageDispatcher<GameEvent.OnMoneyChanged>.Trigger?.Invoke(_currentMoney);
+        EventDispatcher<GameEvent.OnMoneyChanged>.Trigger?.Invoke(_currentMoney);
     }
 
     

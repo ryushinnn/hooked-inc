@@ -34,13 +34,13 @@ public class HomeProfile : MonoBehaviour {
     }
 
     private void OnEnable() {
-        MessageDispatcher<GameEvent.OnAvatarChanged>.AddListener(SetAvatar);
-        MessageDispatcher<GameEvent.OnXpChanged>.AddListener(SetLevelAndXp);
+        EventDispatcher<GameEvent.OnAvatarChanged>.AddListener(SetAvatar);
+        EventDispatcher<GameEvent.OnXpChanged>.AddListener(SetLevelAndXp);
     }
 
     private void OnDisable() {
-        MessageDispatcher<GameEvent.OnAvatarChanged>.RemoveListener(SetAvatar);
-        MessageDispatcher<GameEvent.OnXpChanged>.RemoveListener(SetLevelAndXp);
+        EventDispatcher<GameEvent.OnAvatarChanged>.RemoveListener(SetAvatar);
+        EventDispatcher<GameEvent.OnXpChanged>.RemoveListener(SetLevelAndXp);
     }
 
     public void ExpandOrCollapse(bool extend, bool ignoreAnimation) {

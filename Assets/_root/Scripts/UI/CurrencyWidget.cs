@@ -18,10 +18,10 @@ public class CurrencyWidget : MonoBehaviour {
     private void OnEnable() {
         switch (_type) {
             case Type.Hook:
-                MessageDispatcher<GameEvent.OnHookChanged>.AddListener(UpdateCurrency);
+                EventDispatcher<GameEvent.OnHookChanged>.AddListener(UpdateCurrency);
                 break;
             case Type.Money:
-                MessageDispatcher<GameEvent.OnMoneyChanged>.AddListener(UpdateCurrency);
+                EventDispatcher<GameEvent.OnMoneyChanged>.AddListener(UpdateCurrency);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -31,10 +31,10 @@ public class CurrencyWidget : MonoBehaviour {
     private void OnDisable() {
         switch (_type) {
             case Type.Hook:
-                MessageDispatcher<GameEvent.OnHookChanged>.RemoveListener(UpdateCurrency);
+                EventDispatcher<GameEvent.OnHookChanged>.RemoveListener(UpdateCurrency);
                 break;
             case Type.Money:
-                MessageDispatcher<GameEvent.OnMoneyChanged>.RemoveListener(UpdateCurrency);
+                EventDispatcher<GameEvent.OnMoneyChanged>.RemoveListener(UpdateCurrency);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
