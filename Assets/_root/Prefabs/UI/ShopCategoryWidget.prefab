@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: 8354350228388941331}
   - component: {fileID: 7824568182092723727}
   - component: {fileID: 5879543015522662926}
+  - component: {fileID: 5985808120243910439}
   m_Layer: 5
   m_Name: ShopCategoryWidget
   m_TagString: Untagged
@@ -440,3 +441,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5985808120243910439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8765856693261267047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df8ea868d031a4b4caad665c36f6cad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

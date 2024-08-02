@@ -2208,24 +2208,13 @@ MonoBehaviour:
   _uiList:
   - {fileID: 2109588271}
   - {fileID: 313050597}
-  - {fileID: 2107458202}
+  - {fileID: 6653184388258388086}
   - {fileID: 2592511798846722893}
   - {fileID: 535711923}
   - {fileID: 1665706792}
   - {fileID: 1535485583}
   - {fileID: 1943343958}
   - {fileID: 613786333}
---- !u!114 &2107458202 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6344304485846923099, guid: 621f661ba3e18bf44a9510c954f22b56, type: 3}
-  m_PrefabInstance: {fileID: 6653184388258388085}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45834e61aaf9b224099960165dd406b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2109588271 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 264030115602763256, guid: 693779cfe14bbda4f9368a2d48b265d5, type: 3}
@@ -4280,7 +4269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7006239610730783521, guid: 621f661ba3e18bf44a9510c954f22b56, type: 3}
       propertyPath: m_BlockingMask.m_Bits
-      value: 4294967295
+      value: 32823
       objectReference: {fileID: 0}
     - target: {fileID: 7516953547534046034, guid: 621f661ba3e18bf44a9510c954f22b56, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4311,6 +4300,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 621f661ba3e18bf44a9510c954f22b56, type: 3}
+--- !u!114 &6653184388258388086 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5217806809022196887, guid: 621f661ba3e18bf44a9510c954f22b56, type: 3}
+  m_PrefabInstance: {fileID: 6653184388258388085}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0144442c829f548b559ba942df9841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6716773595261493237
 PrefabInstance:
   m_ObjectHideFlags: 0
