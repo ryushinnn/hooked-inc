@@ -10,43 +10,33 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager> {
     [SerializeField] private List<UI> _uiList = new();
-
-    private Stack<UI> _cache = new();
-
+    
+    private static UI _curUI;
+        
     public static T GetUI<T>() where T : UI {
         return Instance()._uiList.OfType<T>().FirstOrDefault();
     }
 
-    public static void OpenUI<T>(bool stack = false, params object[] prs) where T : UI {
+    public static void OpenUI<T>(params object[] prs) where T : UI {
         var ui = GetUI<T>();
         if (!ui) {
-            ALog.Log($"UI with type {typeof(T).Name} is missing!!!");
+            ALog.Log($"{typeof(T).Name} is missing!!!");
             return;
         }
 
-        if (stack) {
-            Instance()._cache.Push(ui);
-        } else {
-            while (Instance()._cache.Count > 0) {
-                Instance()._cache.Pop().Close();
-            }
-            Instance()._cache.Clear();
+        if (_curUI == ui) {
+            ALog.Log($"{typeof(T).Name} is already opened");
+            return;
         }
         
-        ui.Open(prs);
+        _curUI?.Close();
+        _curUI = ui;
+        _curUI.Open(prs);
     }
 
     public static void CloseUI<T>() where T : UI {
         var ui = GetUI<T>();
-        if (!ui) {
-            ALog.Log($"UI with type {typeof(T).Name} is missing!!!");
-            return;
-        }
-
-        ui.Close();
-        if (Instance()._cache.Count > 0) {
-            Instance()._cache.Pop().Open();
-        }
+        ui?.Close();
     }
 
 #if UNITY_EDITOR
