@@ -27,13 +27,13 @@ public class ShopUI : UI {
         _btnClose.onClick.AddListener(Close);
     }
 
-    public override void Open(params object[] prs) {
+    public override void OnOpen(params object[] prs) {
         gameObject.SetActive(true);
         _boardRectLastSize = _boardRectCollapsedSize;
         OpenCategory();
     }
     
-    public override void Close() {
+    public override void OnClose() {
         gameObject.SetActive(false);
         UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.All);
     }
@@ -78,5 +78,9 @@ public class ShopUI : UI {
     
     private void OpenDetail() {
         _detail.gameObject.SetActive(true);
+    }
+
+    private void Close() {
+        UIManager.CloseUI<ShopUI>();
     }
 }

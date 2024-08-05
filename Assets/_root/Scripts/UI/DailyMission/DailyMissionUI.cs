@@ -28,15 +28,15 @@ public class DailyMissionUI : UI {
         }
     }
 
-    public override void Open(params object[] prs) {
-        base.Open(prs);
+    public override void OnOpen(params object[] prs) {
+        base.OnOpen(prs);
         UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.ExceptSide);
         Expand();
         ScrollToTop();
     }
 
-    public override void Close() {
-        base.Close();
+    public override void OnClose() {
+        base.OnClose();
         UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.All);
     }
 
@@ -56,5 +56,9 @@ public class DailyMissionUI : UI {
     IEnumerator DoScrollToTop() {
         yield return _waitForEndOfFrame;
         _scrollRect.verticalNormalizedPosition = 1;
+    }
+
+    private void Close() {
+        UIManager.CloseUI<DailyMissionUI>();
     }
 }

@@ -12,7 +12,6 @@ public class AquariumBoard : MonoBehaviour {
     [SerializeField] private Button _btnClose;
     
     public Action<AquariumWidget> OnWidgetSelected;
-    public Action OnClosed;
 
     private List<AquariumWidget> _widgets = new();
     private RectTransform _boardRect;
@@ -58,6 +57,6 @@ public class AquariumBoard : MonoBehaviour {
     }
 
     private void Close() {
-        OnClosed?.Invoke();
+        UIManager.CloseUI<AquariumUI>();
     }
 }

@@ -29,14 +29,20 @@ public class UIManager : Singleton<UIManager> {
             return;
         }
         
-        _curUI?.Close();
+        _curUI?.OnClose();
         _curUI = ui;
-        _curUI.Open(prs);
+        ui.OnOpen(prs);
     }
 
     public static void CloseUI<T>() where T : UI {
         var ui = GetUI<T>();
-        ui?.Close();
+        if (!ui) {
+            ALog.Log($"{typeof(T).Name} is missing!!!");
+            return;
+        }
+        
+        if (_curUI == ui) _curUI = null;
+        ui.OnClose();
     }
 
 #if UNITY_EDITOR

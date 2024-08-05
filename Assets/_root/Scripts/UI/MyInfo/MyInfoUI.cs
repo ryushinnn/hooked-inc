@@ -18,13 +18,13 @@ public class MyInfoUI : UI {
         _btnClose.onClick.AddListener(Close);
     }
 
-    public override void Open(params object[] prs) {
+    public override void OnOpen(params object[] prs) {
         gameObject.SetActive(true);
         UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.ExceptSide);
         Expand();
     }
 
-    public override void Close() {
+    public override void OnClose() {
         gameObject.SetActive(false);
         UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.All);
     }
@@ -36,5 +36,9 @@ public class MyInfoUI : UI {
             value => {
                 _boardRect.sizeDelta = value;
             }).SetEase(Ease.OutBack));
+    }
+
+    private void Close() {
+        UIManager.CloseUI<MyInfoUI>();
     }
 }

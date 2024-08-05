@@ -52,13 +52,13 @@ public class RankingUI : UI {
         _selfRankingOnBoardRect.GetComponent<Image>().color = Color.red;
     }
 
-    public override void Open(params object[] prs) {
+    public override void OnOpen(params object[] prs) {
         gameObject.SetActive(true);
         UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.ExceptSide);
         Expand();
     }
 
-    public override void Close() {
+    public override void OnClose() {
         gameObject.SetActive(false);
         UIManager.GetUI<HomeUI>()?.ChangeState(HomeUI.State.All);
     }
@@ -144,5 +144,9 @@ public class RankingUI : UI {
     IEnumerator DoScrollToTop() {
         yield return _waitForEndOfFrame;
         _scrollRect.verticalNormalizedPosition = 1;
+    }
+
+    private void Close() {
+        UIManager.CloseUI<RankingUI>();
     }
 }
